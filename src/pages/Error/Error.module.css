@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Flavors&display=swap');
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorContainer {
+  max-width: 400px;
+  padding: 30px;
+  border: 5px solid black;
+  background: white;
+  box-shadow: 8px 8px 0 black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.errorTitle {
+  font-family: 'Flavors', cursive;
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  color: black;
+  text-shadow: 3px 3px 0 rgb(255, 95, 36);
+}
+
+.errorText {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: black;
+  font-weight: bold;
+}
+
+.imgContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.kennyImage {
+  width: 120px;
+  transform: rotate(5deg);
+  position: absolute;
+  right: -50px;
+  bottom: -60px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.homeButton {
+  background: black;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: inline-block;
+  transition: transform 0.2s, background 0.3s;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 black;
+}
+
+.homeButton:hover {
+  transform: scale(1.1);
+  background: #222;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: rotate(5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(5deg) translateY(-8px);
+  }
+}
