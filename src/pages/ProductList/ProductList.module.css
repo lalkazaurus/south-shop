@@ -6,6 +6,7 @@
     padding-top: 50px;
     align-items: flex-start;
     background-color: #f9f9f9;
+    overflow-y: hidden;
 }
 
 .products {
@@ -27,11 +28,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
+    overflow-y: hidden;
 }
 
 .productBlock:hover {
-    transform: translateY(-4px);
     box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -55,4 +56,17 @@
     margin: 2px 0;
     text-align: center;
     color: #555;
+}
+
+.button {
+    color: white;
+    background-color: black;
+    border: none;
+    transition: 0.1s ease all;
+    padding: 5px;
+    width: 50%;
+}
+
+.button:hover {
+    transform: scale(1.05);
 }

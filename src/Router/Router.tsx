@@ -6,6 +6,7 @@ import Form from "../pages/Form/Form";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import ProductList from "../pages/ProductList/ProductList";
 import Error from "../pages/Error/Error";
+import Cart from "../pages/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -19,8 +20,11 @@ const router = createBrowserRouter([
         path: "/add-product",
         element: <AddProduct/>
     }, {
-        path: 'products',
+        path: '/products',
         element: <ProductList/>
+    }, {
+        path: '/cart',
+        element: <Cart/>
     }
 ])
 
