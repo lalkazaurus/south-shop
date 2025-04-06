@@ -6,7 +6,7 @@ import axios from 'axios';
 import styles from "./AddProduct.module.css"
 import { useTranslation } from 'react-i18next';
 
-const AddProduct: React.FC = () => {
+export default function AddProduct() {
     const queryClient = useQueryClient();
     const { t } = useTranslation();
     const { handleSubmit, reset, register, formState: { errors } } = useForm<Product>({
@@ -80,5 +80,3 @@ const AddProduct: React.FC = () => {
         </div>
     );
 };
-
-export default AddProduct;

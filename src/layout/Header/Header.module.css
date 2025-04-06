@@ -49,9 +49,45 @@
     transition: color 0.3s ease-in-out;
 }
 
+.instruments {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .list li:hover {
     color: white;
 }
+
+.cart {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart a {
+    text-decoration: none;
+    color: rgb(255, 95, 36);
+    position: relative;
+}
+
+.productNumber {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: #d83e3e;
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
 
 @media (max-width: 1024px) {
     .header {
