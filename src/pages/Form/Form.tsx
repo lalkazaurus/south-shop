@@ -1,7 +1,10 @@
 import { useForm } from "react-hook-form";
 import styles from "./Form.module.css"
 import { useTranslation } from "react-i18next";
-import OrderSummary from "./components/OrderSummary/OrderSummary";
+import { ProductInCart, useProductStore } from "../../store";
+import Products from "./elements/Products/Products";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 
 type FormFields = {
     name: string,
@@ -14,18 +17,44 @@ type FormFields = {
     receiver_email: string,
     receiver_name: string,
     receiver_surname: string,
-    comment: string
+    comment: string,
+    products: ProductInCart
 }
 
 export default function Form() {
     const { t } = useTranslation();
+    const queryClient = useQueryClient();
 
     const {register, reset, handleSubmit, formState} = useForm<FormFields>({
         "mode": "onChange"
     })
 
+    const products = useProductStore((store) => store.products);
+    const clearCart = useProductStore((store) => store.clearCart)
+
+    const sum: number = products.reduce((sum, item) => sum + item.price * item.amount, 0);
+
+    const mutation = useMutation({
+        mutationFn: async (order: Partial<FormFields>) => {
+            const parsedOrder = {
+                ...order,
+                products: JSON.parse(order.products as unknown as string)
+            };
+        
+            const res = await axios.post('http://localhost:5000/api/orders', parsedOrder, {
+                headers: { 'Content-Type': 'application/json' }
+            });
+            return res.data;
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['order'] });
+            reset();
+            clearCart();
+        }
+    });
+
     function onSubmit(data: FormFields) {
-        console.log(data)
+        mutation.mutate(data)
     }
 
     return (
@@ -222,6 +251,12 @@ export default function Form() {
                                 }
                             )} />
                         </div>
+                        <input
+                            type="hidden"
+                            {...register("products")}
+                            value={JSON.stringify(products)}
+                        />
+                        
                         <div className={styles.textareaContainer}>
                             <p>{t("comment")}</p>
                             <textarea {...register("comment")}/>
@@ -232,16 +267,19 @@ export default function Form() {
                 <div className={styles.finalContainer}>
                     <h2 className={styles.finalTitle}>{t("order.total")}</h2>
                     <div className={styles.itemRow}>
-                        <span>{t("order.item_count")}</span>
-                        <span className={styles.price}>590 ₴</span>
+                        <span>{products.length}{t("order.item_count")}</span>
+                        <span className={styles.price}>{sum} ₴</span>
                     </div>
                     <div className={styles.itemRow}>
                         <span>{t("order.delivery_cost")}</span>
                         <span className={styles.bold}>{t("order.carrier_rates")}</span>
                     </div>
+                    <div>
+                        <Products/>
+                    </div>
                     <div className={styles.totalRow}>
                         <span>{t("order.to_pay")}</span>
-                        <span className={styles.totalPrice}>590 ₴</span>
+                        <span className={styles.totalPrice}>{sum} ₴</span>
                     </div>
                     <button
                         type="button"

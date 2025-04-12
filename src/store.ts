@@ -8,9 +8,10 @@ type ProductStore = {
     deleteProduct: (name :string) => void;
     decreaseAmount: (name: string) => void;
     increaseAmount: (name: string) => void;
+    clearCart: () => void;
 };
 
-interface ProductInCart extends Product {
+export interface ProductInCart extends Product {
     amount: number;
 }
 
@@ -67,6 +68,12 @@ export const useProductStore = create(
                                     : p
                             )
                         }
+                }),
+            clearCart: () =>
+                set(() => {
+                    return {
+                        products: [],
+                    }
                 })
         }),
         {

@@ -2,7 +2,7 @@
     width: 100vw;
     display: flex;
     justify-content: center;
-    height: 175vh;
+    min-height: 175vh;
 }
 
 .container {
