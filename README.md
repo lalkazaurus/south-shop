@@ -1,50 +1,101 @@
-# React + TypeScript + Vite
+# 🛒 South Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based e-commerce web application inspired by **Rozetka**, featuring multilingual support, shopping cart management, product catalog, order form, and backend integration for product and order storage.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Product Catalog**: Browse products fetched from a backend API.
+* **Cart Management**: Add, remove, and update product quantities using Zustand state management.
+* **Order Form**: Place orders with customer details, delivery, and payment options.
+* **Product Management**: Admin can add new products with images.
+* **Internationalization (i18n)**: Supports multiple languages with `react-i18next`.
+* **Error Page**: Friendly error page with South Park theme.
+* **Persistent Cart**: Cart data is persisted in `localStorage`.
+* **React Query**: Efficient server state management with caching and mutations.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+* **Frontend:** React 18, TypeScript, React Router DOM, React Hook Form, React Query
+* **State Management:** Zustand (with persistence)
+* **Styling:** CSS Modules
+* **Internationalization:** i18next + react-i18next
+* **Icons:** react-icons
+* **Backend API:** Express/NestJS (assumed, not included in this repo)
+* **HTTP Client:** Axios
+* **Build Tool:** Vite
 
-- Configure the top-level `parserOptions` property like this:
+## 📂 Project Structure
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+src/
+ ├── Router/           # App routing
+ ├── layout/           # Header and Footer components
+ ├── pages/            # Main, Products, Cart, AddProduct, Form, Error
+ ├── i18n/             # Localization config & switcher
+ ├── store/            # Zustand store for cart
+ ├── type/             # TypeScript interfaces
+ ├── data/             # Static category data
+ └── index.tsx         # App entry point
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## ⚙️ Installation & Setup
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone the repository:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   git clone https://github.com/your-username/rozetka-clone.git
+   cd rozetka-clone
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production:
+
+   ```bash
+   npm run build
+   ```
+
+5. Preview production build:
+
+   ```bash
+   npm run preview
+   ```
+
+## 🔗 API Endpoints (Expected Backend)
+
+The frontend expects a backend running at `http://localhost:5000/api` with endpoints:
+
+* `GET /products` → Fetch all products
+* `POST /products` → Add a new product
+* `POST /orders` → Submit a new order
+
+## 🌍 Internationalization
+
+Languages supported:
+
+* 🇬🇧 English
+* 🇺🇦 Ukrainian
+
+Users can switch language via the **Locale Switcher** in the header.
+
+## 📸 Screenshots (Optional)
+
+*Add screenshots of main pages (catalog, cart, order form).*
+
+## 📜 License
+
+This project is for educational purposes and not intended for commercial use.
+
+---
+
+👨‍💻 Developed with ❤️ using React, TypeScript, and Zustand.
